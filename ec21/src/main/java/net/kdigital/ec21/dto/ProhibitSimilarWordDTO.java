@@ -18,16 +18,16 @@ public class ProhibitSimilarWordDTO {
     private Long prohibitSimilarId;
     private String similarWord;
     private double similarProba;
-    private Long prohibitWordId;
+    private String prohibitWord;
     private String productId;
 
-    public static ProhibitSimilarWordDTO toDTO(ProhibitSimilarWordEntity entity, Long prohibitWordId,
+    public static ProhibitSimilarWordDTO toDTO(ProhibitSimilarWordEntity entity, String prohibitWord,
             String productId) {
         return ProhibitSimilarWordDTO.builder()
                 .prohibitSimilarId(entity.getProhibitSimilarId())
                 .similarWord(entity.getSimilarWord())
                 .similarProba(entity.getSimilarProba())
-                .prohibitWordId(prohibitWordId)
+                .prohibitWord(prohibitWord)
                 .productId(productId)
                 .build();
     }

@@ -31,14 +31,18 @@ public class ProhibitSimilarWordEntity {
     @Column(name = "prohibit_similar_id")
     @GeneratedValue(generator = "prohibit_similar_word_seq")
     private Long prohibitSimilarId;
+
     @Column(name = "similar_word", nullable = false)
     private String similarWord;
+
     @Column(name = "similar_proba", nullable = false)
     private double similarProba;
+
     // FK
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prohibit_word_id")
+    @JoinColumn(name = "prohibit_word")
     private ProhibitWordEntity prohibitWordEntity;
+    
     // FK
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")

@@ -33,29 +33,26 @@ import net.kdigital.ec21.dto.check.ProhibitReason;
 @Entity
 @Table(name = "prohibit_word")
 public class ProhibitWordEntity {
-    @SequenceGenerator(name = "prohibit_word_seq", sequenceName = "prohibit_word_seq", allocationSize = 1, initialValue = 1)
     @Id
-    @Column(name = "prohibit_word_id")
-    @GeneratedValue(generator = "prohibit_word_seq")
-    private Long prohibitWordId;
+    @Column(name = "prohibit_word", nullable = false)
+    private String prohibitWord;
 
     @Column(name = "prohibit_reason", nullable = false)
     @Enumerated(EnumType.STRING)
     private ProhibitReason prohibitReason;
 
-    @Column(name = "prohibit_word", nullable = false)
-    private String prohibitWord;
 
     // 자식 - 금지어 유사 단어 테이블
     @OneToMany(mappedBy = "prohibitWordEntity", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
     @OrderBy("prohibit_similar_id")
     private List<ProhibitSimilarWordEntity> prohibitSimilarWordEntity;
 
+
     public static ProhibitWordEntity toEntity(ProhibitWordDTO dto) {
         return ProhibitWordEntity.builder()
-                .prohibitWordId(dto.getProhibitWordId())
-                .prohibitReason(dto.getProhibitReason())
                 .prohibitWord(dto.getProhibitWord())
+                .prohibitReason(dto.getProhibitReason())
                 .build();
     }
+    
 }

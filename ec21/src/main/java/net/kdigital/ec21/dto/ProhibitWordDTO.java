@@ -16,15 +16,13 @@ import net.kdigital.ec21.entity.ProhibitWordEntity;
 @ToString
 @Builder
 public class ProhibitWordDTO {
-    private Long prohibitWordId;
-    private ProhibitReason prohibitReason;
     private String prohibitWord;
+    private ProhibitReason prohibitReason;
 
     public static ProhibitWordDTO toEntity(ProhibitWordEntity entity) {
         return ProhibitWordDTO.builder()
-                .prohibitWordId(entity.getProhibitWordId())
-                .prohibitReason(entity.getProhibitReason())
                 .prohibitWord(entity.getProhibitWord())
+                .prohibitReason(entity.getProhibitReason())
                 .build();
     }
 }

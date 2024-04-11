@@ -122,20 +122,15 @@ select * from product;
 
 -- 금지어 (prohibit_word)
 DROP TABLE prohibit_word;
-drop sequence prohibit_word_seq;
 
 CREATE TABLE prohibit_word
 (
-    prohibit_word_id NUMBER PRIMARY KEY
+    prohibit_word VARCHAR2(200) primary key
     , prohibit_reason VARCHAR2(20) NOT NULL check(prohibit_reason in ('IPR','drug','prohibited_items','explicit_adult'))
-    , prohibit_word VARCHAR2(200) NOT NULL
 );
 
-create sequence prohibit_word_seq;
 
 select * from prohibit_word; 
-
-
 
 
 
@@ -148,7 +143,7 @@ CREATE TABLE prohibit_similar_word
     prohibit_similar_id NUMBER PRIMARY KEY
     , similar_word VARCHAR2(100) NOT NULL
     , similar_proba NUMBER(5,2) NOT NULL
-    , prohibit_word_id NUMBER references prohibit_word(prohibit_word_id) on delete casecade
+    , prohibit_word NUMBER VARCHAR2(200) prohibit_word(prohibit_word) on delete casecade
     , product_id VARCHAR2(50) references product(product_id) on delete casecade
 );
 create sequence prohibit_similar_word_seq;
